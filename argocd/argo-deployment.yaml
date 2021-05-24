@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-deployment
+  labels:
+    app: argo-deployment
+  annotations:
+    keel.sh/policy: all
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@every 1m"
+spec:
+  replicas: 2
+  revisionHistoryLimit: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: argo-deployment
+  template:
+    metadata:
+      labels:
+        app: argo-deployment
+    spec:
+      containers:
+        - name: argo-deployment-pod
+          image: ghcr.io/jose1522/test-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /docs
+              port: 80
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+      imagePullSecrets:
+        - name: docker-basic-auth
