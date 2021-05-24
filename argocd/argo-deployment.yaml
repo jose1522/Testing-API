@@ -28,11 +28,11 @@ spec:
           image: ghcr.io/jose1522/test-api:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           livenessProbe:
             httpGet:
-              path: /docs
-              port: 80
+              path: /
+              port: 8080
             initialDelaySeconds: 30
             timeoutSeconds: 10
       imagePullSecrets:
