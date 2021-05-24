@@ -10,7 +10,7 @@ spec:
       protocol: TCP
       port: 9300
       targetPort: 8080
-      nodePort: 39300
+      nodePort: 30001
   type: LoadBalancer
   sessionAffinity: None
   externalTrafficPolicy: Cluster
