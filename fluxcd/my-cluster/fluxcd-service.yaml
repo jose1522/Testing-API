@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flux-app-service
+spec:
+  selector:
+    app: flux-deployment
+  ports:
+    - name: flux-app-service
+      protocol: TCP
+      port: 9301
+      targetPort: 8080
+      nodePort: 30002
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+status:
+  loadBalancer:
+    ingress:
+      - hostname: localhost
