@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: flux-deployment-pod
-          image: ghcr.io/jose1522/test-api:latest
+          image: ghcr.io/jose1522/test-api:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
