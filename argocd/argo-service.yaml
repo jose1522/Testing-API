@@ -8,7 +8,7 @@ spec:
   ports:
     - name: argo-app-service
       protocol: TCP
-      port: 9300
+      port: 9303
       targetPort: 8080
       nodePort: 30001
   type: LoadBalancer
