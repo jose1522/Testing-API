@@ -6,6 +6,9 @@ metadata:
 spec:
   imageRepositoryRef:
     name: podinfo
+  filterTags:
+    pattern: '^latest'
+    extract: '$latest'
   policy:
-    semver:
-      range: '>=1.0.0'
+     numerical:
+      order: desc
