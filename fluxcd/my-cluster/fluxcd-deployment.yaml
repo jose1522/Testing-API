@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flux-deployment
+  labels:
+    app: flux-deployment
+spec:
+  replicas: 2
+  revisionHistoryLimit: 0
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: flux-deployment
+  template:
+    metadata:
+      labels:
+        app: flux-deployment
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+        - name: flux-deployment-pod
+          image: ghcr.io/jose1522/test-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+      imagePullSecrets:
+        - name: docker-basic-auth
