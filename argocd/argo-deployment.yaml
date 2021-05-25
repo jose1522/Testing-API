@@ -9,7 +9,7 @@ metadata:
     keel.sh/trigger: poll
     keel.sh/pollSchedule: "@every 1m"
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 1
   strategy:
     rollingUpdate:
