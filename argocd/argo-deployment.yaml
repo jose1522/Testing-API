@@ -10,7 +10,7 @@ metadata:
     keel.sh/pollSchedule: "@every 1m"
 spec:
   replicas: 3
-  revisionHistoryLimit: 1
+  revisionHistoryLimit: 0
   strategy:
     rollingUpdate:
       maxUnavailable: 1
