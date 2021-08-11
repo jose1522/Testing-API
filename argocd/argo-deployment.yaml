@@ -4,10 +4,6 @@ metadata:
   name: argo-deployment
   labels:
     app: argo-deployment
-  annotations:
-    keel.sh/policy: all
-    keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@every 1m"
 spec:
   replicas: 2
   revisionHistoryLimit: 0
