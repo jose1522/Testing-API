@@ -84,3 +84,4 @@ jobs:
           propertyPath: 'metadata.annotations.image_version'
           value: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.new_tag }}
           workDir: ./argocd
+          createPR: false
