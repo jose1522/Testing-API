@@ -63,3 +63,15 @@ jobs:
           context: ./src
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Debug outputs
+        run: echo ${{ steps.meta.outputs }}
+
+      - name: Update manifest
+        uses: fjogeleit/yaml-update-action@master
+        with:
+          valueFile: 'argocd/argo-deployment.yaml'
+          propertyPath: 'spec.template.spec.containers.image'
+          value: ghcr.io/jose1522/test-api:${{ steps.meta.outputs.tags }}
+          commitChange: false
+          updateFile: true
