@@ -1,7 +1,7 @@
 FROM python:latest
 RUN mkdir /app
 WORKDIR /app
-ADD ./src /app
+ADD . /app
 RUN echo "Debugging - Root files"
 RUN ls
 RUN echo "Debugging - App files"
