@@ -81,7 +81,7 @@ jobs:
           message: 'update to manifest'
           token: ${{ secrets.GITHUB_TOKEN }}
           valueFile: 'argocd/argo-deployment.yaml'
-          propertyPath: 'spec.template.spec.containers.image'
+          propertyPath: 'metadata.annotations.image_version'
           value: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.new_tag }}
           commitChange: true
           updateFile: true

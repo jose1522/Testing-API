@@ -4,6 +4,8 @@ metadata:
   name: argo-deployment
   labels:
     app: argo-deployment
+  annotations:
+    image_version: v0.1.0
 spec:
   replicas: 2
   revisionHistoryLimit: 0
@@ -21,7 +23,7 @@ spec:
     spec:
       containers:
         - name: argo-deployment-pod
-          image: ghcr.io/jose1522/test-api:main
+          image: ghcr.io/jose1522/test-api:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
