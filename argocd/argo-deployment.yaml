@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: argo-deployment-pod
-          image: ghcr.io/jose1522/test-api:latest
+          image: ghcr.io/jose1522/test-api:main
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
