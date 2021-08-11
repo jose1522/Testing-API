@@ -35,6 +35,7 @@ jobs:
       
       # https://github.com/anothrNick/github-tag-action
       - name: Bump version and push tag
+        id: tag
         uses: anothrNick/github-tag-action@1.26.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,7 +63,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ./src
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.new_tag }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Debug outputs
@@ -76,6 +77,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           valueFile: 'argocd/argo-deployment.yaml'
           propertyPath: 'spec.template.spec.containers.image'
-          value: ${{ steps.meta.outputs.tags }}
+          value: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.new_tag }}
           commitChange: true
           updateFile: true
