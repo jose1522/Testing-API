@@ -45,7 +45,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-          TAG_CONTEXT: main
 
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
