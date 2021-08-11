@@ -70,8 +70,11 @@ jobs:
       - name: Update manifest
         uses: fjogeleit/yaml-update-action@master
         with:
+          branch: main
+          message: 'update to manifest'
+          token: ${{ secrets.GITHUB_TOKEN }}
           valueFile: 'argocd/argo-deployment.yaml'
           propertyPath: 'spec.template.spec.containers.image'
-          value: ghcr.io/jose1522/test-api:${{ steps.meta.outputs.tags }}
+          value: ${{ steps.meta.outputs.tags }}
           commitChange: false
           updateFile: true
