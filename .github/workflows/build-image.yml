@@ -33,6 +33,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       
+      # https://github.com/anothrNick/github-tag-action
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.26.0
         env:
@@ -76,5 +77,5 @@ jobs:
           valueFile: 'argocd/argo-deployment.yaml'
           propertyPath: 'spec.template.spec.containers.image'
           value: ${{ steps.meta.outputs.tags }}
-          commitChange: false
+          commitChange: true
           updateFile: true
