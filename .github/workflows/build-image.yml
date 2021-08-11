@@ -36,7 +36,7 @@ jobs:
       - name: Bump version
         uses: remorses/bump-version@js
         with:
-            version_file: ./VERSION
+            version_file: ./src/__init__.py
             github_token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Push changes
